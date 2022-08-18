@@ -14,4 +14,3 @@ jobs:
 
       - name: Run API Tests
         run: newman run LibraryBook.postman_collection -d BookData.csv -e QA.postman_environment -g libraryworkspace.postman_globals -r htmlextra
-newman
