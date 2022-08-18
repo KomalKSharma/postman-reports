@@ -1,0 +1,27 @@
+{
+	"id": "9db6c838-38d1-4ea2-8185-438bc6a46107",
+	"values": [
+		{
+			"key": "companyCode",
+			"value": "RS",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "code",
+			"value": "4%2F0AdQt8qiM-VVTvdiahHi8YE_4crIRaVUuzyS-UiFvjQxFDot3uy0idARw2hzmlOeV2l1HpQ",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2022-07-28T14:11:31.071Z",
+	"_postman_exported_using": "Postman/9.25.2"
+}
