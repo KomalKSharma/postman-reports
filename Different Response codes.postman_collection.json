@@ -1,0 +1,295 @@
+{
+	"info": {
+		"_postman_id": "f946cd16-fc84-4b8b-80a5-b73d70046923",
+		"name": "Different Response codes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21842106"
+	},
+	"item": [
+		{
+			"name": "0.1 200 - ok - getting response easily",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://postman-library-api.glitch.me/books",
+					"protocol": "https",
+					"host": [
+						"postman-library-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "02. 201 - Created and book successful",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"One Hundred Years of Solitude\",\n    \"author\": \"Gabriel García Márquez\",\n    \"genre\": \"fiction\",\n    \"yearPublished\": 1967\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://postman-library-api.glitch.me/books",
+					"protocol": "https",
+					"host": [
+						"postman-library-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"books"
+					]
+				},
+				"description": "### Add a book"
+			},
+			"response": []
+		},
+		{
+			"name": "03. 404 - Not Found - Wrong URL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://postman-library-api.glitch.me/book",
+					"protocol": "https",
+					"host": [
+						"postman-library-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"book"
+					]
+				},
+				"description": "### Add a book"
+			},
+			"response": []
+		},
+		{
+			"name": "04. 405 - Method Not Allowed on books url without ID to update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://postman-library-api.glitch.me/books",
+					"protocol": "https",
+					"host": [
+						"postman-library-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"books"
+					]
+				},
+				"description": "### Add a book"
+			},
+			"response": []
+		},
+		{
+			"name": "05. 403. Forbidden - Delete request if delete not allowed",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// book id in the collection will not allowed to delete"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://postman-library-api.glitch.me/books/:id",
+					"protocol": "https",
+					"host": [
+						"postman-library-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"books",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "Zsmnt5VulLcwL1u"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "06. 400 - Bad Request - Unknown query parameter limit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://postman-library-api.glitch.me?limit={{limit}}&startAt={{startAt}}",
+					"protocol": "https",
+					"host": [
+						"postman-library-api",
+						"glitch",
+						"me"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "{{limit}}"
+						},
+						{
+							"key": "startAt",
+							"value": "{{startAt}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "07. 401 - Unauthorized - Toekn is not provided",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://developer.api.autodesk.com/oss/v2/buckets?limit={{limit}}&startAt={{startAt}}",
+					"protocol": "https",
+					"host": [
+						"developer",
+						"api",
+						"autodesk",
+						"com"
+					],
+					"path": [
+						"oss",
+						"v2",
+						"buckets"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "{{limit}}"
+						},
+						{
+							"key": "startAt",
+							"value": "{{startAt}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "-"
+		}
+	]
+}
